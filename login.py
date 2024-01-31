@@ -56,7 +56,7 @@ with col2:
 
     def login(user):
         st.session_state.ingreso = "ok"
-        st.write(st.session_state.ingreso)
+        
         st.session_state.usuario = user
         
         st.write(st.session_state.usuario)
@@ -66,35 +66,37 @@ with col2:
             
             show_pages([
                 Page("inicio.py", "Cargar Gastos"),
+                Page("login.py", "Login"),
                      
             ])
         
 
     # Create the login form
 
-	    if st.session_state.ingreso == "ok":
-	        st.title("Salir del Sistema")
-	        if st.button("salir"):
-	            del st.session_state.ingreso
-	            st.info("Salio Exitosamente del Sistema")
-	    else:
-	        st.header("Ingrese")
-	        placeholder = st.empty()
-	        with placeholder.form("Login"):
-	            username = st.text_input("Usuario")
-	            password = st.text_input("Password", type="password")
-	            ingresar = st.form_submit_button("Ingresar")
-	        if ingresar:
-	            if username == "Oscar":
-		            user = username
-		            if user is not None:
-		                login(user)
-		                placeholder.empty()
-		            else:
-		                st.error("Usuario o Contraseña Incorrecta")
+    if st.session_state.ingreso == "ok":
+        st.title("Salir del Sistema")
+        if st.button("salir"):
+            del st.session_state.ingreso
+            st.info("Salio Exitosamente del Sistema")
+    else:
+        st.header("Ingrese")
+        placeholder = st.empty()
+        with placeholder.form("Login"):
+            username = st.text_input("Usuario")
+            password = st.text_input("Password", type="password")
+            ingresar = st.form_submit_button("Ingresar")
+        if ingresar:
+            if username == "Oscar":
+    	        user = username
+
+    	        if user is not None:
+    	            login(user)
+    	            placeholder.empty()
+    	        else:
+    	            st.error("Usuario o Contraseña Incorrecta")
 
     # Add a submit button
-    local_css("estilos.css")
+local_css("estilos.css")
 
     # Ejecutar la consulta SQL
 with col3:
